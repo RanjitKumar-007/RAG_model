@@ -108,11 +108,3 @@ The retrieved chunks are assembled into a structured prompt with source labels a
 | VRAM | 6.4 GB |
 | CUDA Version | 12.8 |
 | Python | 3.10 |
-
----
-
-**Why low temperature (0.1)?**
-Research questions require factual, precise answers. Low temperature makes the model deterministic and reduces hallucination risk.
-
-**Why Qwen 2.5 7B Q4?**
-At 4.7GB, it fits within 6GB VRAM while still delivering strong instruction-following and reading comprehension for research content.
