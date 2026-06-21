@@ -99,12 +99,3 @@ The retrieved chunks are assembled into a structured prompt with source labels a
 | `num_gpu` | `99` | Forces all 32 model layers onto GPU |
 
 ---
-
-## 🖥️ Hardware Used
-
-| Component | Spec |
-|---|---|
-| GPU | NVIDIA GeForce RTX 3050 6GB Laptop |
-| VRAM | 6.4 GB |
-| CUDA Version | 12.8 |
-| Python | 3.10 |
