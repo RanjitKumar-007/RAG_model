@@ -78,7 +78,7 @@ The overlap ensures that context is not lost at chunk boundaries — a sentence 
 Each chunk is converted into a 384-dimensional dense vector using `all-MiniLM-L6-v2`, a lightweight but highly accurate sentence embedding model. Embeddings are generated in batches of 64 on GPU for speed.
 
 ### 5. FAISS Indexing
-All chunk embeddings are stored in a FAISS `IndexFlatL2` index, which performs exact nearest-neighbour search using L2 (Euclidean) distance. For 10 research papers (~300–500 chunks), this is extremely fast — under 1ms per query.
+All chunk embeddings are stored in a FAISS `IndexFlatL2` index, which performs exact nearest-neighbour search using L2 (Euclidean) distance. For research papers (~300–500 chunks), this is extremely fast — under 1ms per query.
 
 ### 6. Retrieval
 When a question is asked, it is embedded using the same model. FAISS searches the index and returns the top-5 most semantically similar chunks along with their source filenames.
@@ -110,17 +110,6 @@ The retrieved chunks are assembled into a structured prompt with source labels a
 | Python | 3.10 |
 
 ---
-
-## ⚠️ Design Decisions
-
-**Why `all-MiniLM-L6-v2`?**
-It is fast, lightweight (80MB), and produces high-quality semantic embeddings for English text. Ideal for retrieval tasks over research paper chunks.
-
-**Why FAISS IndexFlatL2?**
-For a knowledge base of 10 papers (~500 chunks), exact search is fast enough. No approximation needed, so retrieval accuracy is maximised.
-
-**Why chunk overlap?**
-A 50-word overlap between adjacent chunks prevents key information from being split across chunk boundaries and missed during retrieval.
 
 **Why low temperature (0.1)?**
 Research questions require factual, precise answers. Low temperature makes the model deterministic and reduces hallucination risk.
